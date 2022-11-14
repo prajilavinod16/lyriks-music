@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PlayPause from "./PlayPause";
-import { playPause, setActiveSongs } from "../redux/features/playerSlice";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const SongCard = ({ song, i }) => {
   const activeSong = "Test";
@@ -18,6 +18,15 @@ const SongCard = ({ song, i }) => {
           <playPause />
         </div>
         <img alt="song_img" src={song.images?.coverart} />
+      </div>
+      <div className="mt-4 flex flex-col">
+        <p className="font-semibold text-lg text-white truncate">
+          <link to={`/songs/${song?.key}`}>{song.title}</link>
+        </p>
+        <p className="text-sm truncate text-grey-300 mt-1">
+          <link to={song.artists? `/artists/${song?.artists[0]?.adamid}`: '/top-artists'}>
+            {song.subtitle}</link>
+        </p>
       </div>
     </div>
   );
